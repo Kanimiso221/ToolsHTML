@@ -1,3 +1,4 @@
+// 
 document.addEventListener('DOMContentLoaded', () => {
     const dropZone = document.getElementById('dropZone');
     const resultDiv = document.getElementById('result');
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             if (p.textContent.includes('【正気度ロール】')) results[characterName]['SANC失敗']++;
 
-                        } else if (result === '決定的成功') {
+                        } else if (result === '決定的成功' || result === '決定的成功/スペシャル') {
 
                             results[characterName]['成功']++;
                             results[characterName]['決定的成功']++;
