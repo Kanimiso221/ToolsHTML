@@ -213,36 +213,39 @@ document.getElementById('npcForm').addEventListener('submit', function(e) {
     }).catch(function(error) {
 
         console.error('クリップボードにコピーできませんでした。', error);
+        alert('クリップボードにコピーできませんでした。', error);
     });
 });
  
 document.getElementById('addSkill').addEventListener('click', function() {
-    const skillsDiv           = document.getElementById('skills');
-    const allSkills           = skillsDiv.querySelectorAll('.skillSet');
-    const newSkillNumber      = allSkills.length + 1;
+    const skillsDiv            = document.getElementById('skills');
+    const allSkills            = skillsDiv.querySelectorAll('.skillSet');
+    const newSkillNumber       = allSkills.length + 1;
 
-    const newSkillLabel       = document.createElement('label');
-    newSkillLabel.textContent = `技能${newSkillNumber}：`;
-    newSkillLabel.htmlFor     = `skill${newSkillNumber}`;
+    const newSkillLabel        = document.createElement('label');
+    newSkillLabel.textContent  = `技能${newSkillNumber}：`;
+    newSkillLabel.htmlFor      = `skill${newSkillNumber}`;
 
-    const newSkillInput       = document.createElement('input');
-    newSkillInput.type        = 'text';
-    newSkillInput.id          = `skill${newSkillNumber}`;
-    newSkillInput.name        = `skill${newSkillNumber}`;
-    newSkillInput.placeholder = "技能名";
-    newSkillInput.className   = "skillName";
+    const newSkillInput        = document.createElement('input');
+    newSkillInput.type         = 'text';
+    newSkillInput.id           = `skill${newSkillNumber}`;
+    newSkillInput.name         = `skill${newSkillNumber}`;
+    newSkillInput.placeholder  = "技能名";
+    newSkillInput.className    = "skillName";
+    newSkillInput.autocomplete = "off"
 
-    const newSkillValue       = document.createElement('input');
-    newSkillValue.type        = 'number';
-    newSkillValue.id          = `value${newSkillNumber}`;
-    newSkillValue.name        = `value${newSkillNumber}`;
-    newSkillValue.placeholder = "技能成功値";
-    newSkillValue.className   = "skillValue";
-    newSkillValue.min         = "0";
-    newSkillValue.max         = "100";
+    const newSkillValue        = document.createElement('input');
+    newSkillValue.type         = 'number';
+    newSkillValue.id           = `value${newSkillNumber}`;
+    newSkillValue.name         = `value${newSkillNumber}`;
+    newSkillValue.placeholder  = "技能成功値";
+    newSkillValue.className    = "skillValue";
+    newSkillValue.min          = "0";
+    newSkillValue.max          = "100";
+    newSkillValue.autocomplete = "off"
 
-    const skillContainer = document.createElement('div');
-    skillContainer.className  = 'skillSet';
+    const skillContainer       = document.createElement('div');
+    skillContainer.className   = 'skillSet';
 
     skillContainer.appendChild(newSkillLabel);
     skillContainer.appendChild(newSkillInput);
@@ -265,4 +268,5 @@ function damageBonus(str, siz) {
     else if (17 <= add && add <= 24) return "+0";
     else if (25 <= add && add <= 32) return "+1d4";
     else if (33 <= add && add <= 40) return "+1d6";
+    else                             return undefined;
 }
