@@ -1,3 +1,68 @@
+.tab {
+    overflow: hidden;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+#dropZone {
+    border: 2px dashed #ccc;
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    padding: 10px;
+}
+
+input[type = "number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type = "number"]::-webkit-inner-spin-button,
+input[type = "number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type = "number"] {
+    width: 3em;
+}
+
+#skills label {
+    display: inline-block;
+    margin-right: 8px;
+    width: 80px;
+    text-align: right;
+}
+
+#skills div {
+    margin-bottom: 10px;
+}
+
+#skills input[type = "text"],
+#skills input[type = "number"] {
+    width: 150px;
+    margin-right: 4px;
+}
+
 #result {
-    white-space: pre; /* スペースと改行をそのまま表示 */
+    white-space: pre;
 }

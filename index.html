@@ -13,14 +13,70 @@
         <!-- 実際に記述していく見た目部分 -->
         <h1>いまだにテストだよ</h1>
 
-        <!-- ドラッグ＆ドロップ領域 -->
-        <div id = "dropZone" style = "border: 2px dashed #ccc; width: 300px; height: 200px; text-align: center; padding: 10px;">
-            ココフォリアから出したログをここにD&Dしてね
-            それ以外は認識しないよ
+        <!-- タブボタン -->
+        <div class = "tab">
+            <button class = "tablinks" onclick = "openTab(event, 'D&DOne')" autocomplete = "off">ログ解析</button>
+            <button class = "tablinks" onclick = "openTab(event, 'Another')" autocomplete = "off">NPC 作成</button>
         </div>
 
-        <!-- 結果表示領域 -->
-        <div id="result"></div>
+        <!-- ドラッグ＆ドロップ領域 -->
+        <div id = "D&DOne", class = "tabcontent">
+            <div id = "dropZone">
+                ココフォリアから出したログをここにD&Dしてね
+                それ以外は認識しないよ
+            </div>
+    
+            <!-- 結果表示領域 -->
+            <div id = "result"></div>
+        </div>
+
+        <!-- もう一つのタブの内容 -->
+        <div id = "Another" class = "tabcontent">
+            <h2>NPCの作成</h2>
+            <form id = "npcForm">
+                <label for = "name">名前：</label>
+                <input type = "text" id = "name" name = "name">
+                <br>
+
+                <h3>能力値</h3>
+                <label for = "hp">HP：</label>
+                <input type = "number" id = "hp" name = "hp" min = "0" max = "99">
+                <label for = "mp">MP：</label>
+                <input type = "number" id = "mp" name = "mp" min = "0" max = "99">
+                <label for = "san">SAN：</label>
+                <input type = "number" id = "san" name = "san" min = "0" max = "99">
+                <br>
+
+                <label for = "str">STR：</label>
+                <input type = "number" id = "str" name = "str" min = "0" max = "99">
+                <label for = "con">CON：</label>
+                <input type = "number" id = "con" name = "con" min = "0" max = "99">
+                <label for = "pow">POW：</label>
+                <input type = "number" id = "pow" name = "pow" min = "0" max = "99">
+                <label for = "dex">DEX：</label>
+                <input type = "number" id = "dex" name = "dex" min = "0" max = "99">
+                <label for = "app">APP：</label>
+                <input type = "number" id = "app" name = "app" min = "0" max = "99">
+                <label for = "siz">SIZ：</label>
+                <input type = "number" id = "siz" name = "siz" min = "0" max = "99">
+                <label for = "int">INT：</label>
+                <input type = "number" id = "int" name = "int" min = "0" max = "99">
+                <label for = "edu">EDU：</label>
+                <input type = "number" id = "edu" name = "edu" min = "0" max = "99">
+                <br>
+
+                <h3>技能</h3>
+                <!-- 技能の入力フィールド -->
+                <div id = "skills">技能一覧<br></div>
+                <button type = "button" id ="addSkill">技能を追加</button>
+                <!-- 他の技能も同様に -->
+
+                <br>
+                <input type = "submit" value = "NPC作成">
+            </form>
+
+            <div id="npcResult"></div>
+        </div>
 
         <!-- js ファイルの読み込み -->
         <script src = "toolJS.js"></script>
