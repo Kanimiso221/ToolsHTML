@@ -259,10 +259,10 @@ function padString(str, length) {
 }
 
 function damageBonus(str, siz) {
-    const add = str + siz;
-    if (2 <= add || add <= 12)       return "-1d6";
-    else if (13 <= add || add <= 16) return "-1d4";
-    else if (17 <= add || add <= 24) return "+0";
-    else if (25 <= add || add <= 32) return "+1d4";
-    else if (33 <= add || add <= 40) return "+1d6";
+    const add = parseInt(str) + parseInt(siz);
+    if      (2  <= add && add <= 12) return "-1d6";
+    else if (13 <= add && add <= 16) return "-1d4";
+    else if (17 <= add && add <= 24) return "+0";
+    else if (25 <= add && add <= 32) return "+1d4";
+    else if (33 <= add && add <= 40) return "+1d6";
 }
