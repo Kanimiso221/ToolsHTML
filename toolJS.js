@@ -75,13 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     } 
                 });
 
-                // 結果の出力部分を修正
-                let output = '';
-                const maxLength = Math.max(...Object.keys(results).map(name => name.length));
+                // 結果の出力部分をテーブルで作成
+                let output = '<table><tr><th>キャラクター名</th><th>1クリ</th><th>クリティカル</th><th>成功</th><th>失敗</th><th>ファンブル</th><th>100ファン</th><th>SANC成功</th><th>SANC失敗</th></tr>';
                 for (const [character, counts] of Object.entries(results)) {
-                    const paddedName = padString(character, maxLength);
-                    output += `${paddedName}: 1クリ[${counts['1クリ']}]・クリティカル[${counts['決定的成功']}]・成功[${counts['成功']}]・失敗[${counts['失敗']}]・ファンブル[${counts['致命的失敗']}]・100ファン[${counts['100ファン']}]・SANC成功[${counts['SANC成功']}]・SANC失敗[${counts['SANC失敗']}]<br>`;
+                    output += `<tr><td>${character}</td><td>${counts['1クリ']}</td><td>${counts['決定的成功']}</td><td>${counts['成功']}</td><td>${counts['失敗']}</td><td>${counts['致命的失敗']}</td><td>${counts['100ファン']}</td><td>${counts['SANC成功']}</td><td>${counts['SANC失敗']}</td></tr>`;
                 }
+                output += '</table>';
 
                 resultDiv.innerHTML = output;
             };
