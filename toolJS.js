@@ -145,14 +145,14 @@ document.getElementById('npcForm').addEventListener('submit', function(e) {
     command += '1d3' + addAttack + ' 【ダメージ判定】\n' +
                '1d4' + addAttack + ' 【ダメージ判定】\n' +
                '1d6' + addAttack + ' 【ダメージ判定】\n' +
-               'CCB<={STR}5 【STR × 5】\n' +
-               'CCB<={CON}5 【CON × 5】\n' +
-               'CCB<={POW}5 【POW × 5】\n' +
-               'CCB<={DEX}5 【DEX × 5】\n' +
-               'CCB<={APP}5 【APP × 5】\n' +
-               'CCB<={SIZ}5 【SIZ × 5】\n' +
-               'CCB<={INT}5 【INT × 5】\n' +
-               'CCB<={EDU}5 【EDU × 5】\n';
+               'CCB<={STR}*5 【STR × 5】\n' +
+               'CCB<={CON}*5 【CON × 5】\n' +
+               'CCB<={POW}*5 【POW × 5】\n' +
+               'CCB<={DEX}*5 【DEX × 5】\n' +
+               'CCB<={APP}*5 【APP × 5】\n' +
+               'CCB<={SIZ}*5 【SIZ × 5】\n' +
+               'CCB<={INT}*5 【INT × 5】\n' +
+               'CCB<={EDU}*5 【EDU × 5】\n';
 
     // JSONデータを作成
     const npcData = {
