@@ -17,62 +17,66 @@ document.addEventListener('DOMContentLoaded', () => {
             const reader = new FileReader();
 
             reader.onload = (e) => {
-                const text       = e.target.result;
-                const parser     = new DOMParser();
-                const doc        = parser.parseFromString(text, 'text/html');
+                const text = e.target.result;
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
                 const paragraphs = doc.querySelectorAll('p');
-                const results    = {};
+                const results = {};
 
                 paragraphs.forEach((p) => {
                     if (p.textContent.includes('ccb') || p.textContent.includes('CCB') || p.textContent.includes('【正気度ロール】')) {
                         const characterName = p.querySelector('span:nth-child(2)').textContent.trim();
-                        const resultText    = p.querySelector('span:nth-child(3)').textContent;
-                        const resultParts   = resultText.split(' ＞ ');
-                        const rollResult    = parseInt(resultParts[resultParts.length - 2]);
-                        const result        = resultParts.pop().trim();
+                        const resultText = p.querySelector('span:nth-child(3)').textContent;
+                        const individualResults = resultText.split(/[#\n]/).map(s => s.trim()).filter(s => s);
+                        individualResults.forEach((res) => {
+                            const resultParts = res.split(' ＞ ');
+                            const rollResult = parseInt(resultParts[resultParts.length - 2], 10);
+                            const result = resultParts.pop().trim();
 
-                        if (!results[characterName]) {
-                            results[characterName] = {
-                                '1クリ': 0, '決定的成功': 0, '成功': 0,
-                                '失敗': 0, '致命的失敗': 0, '100ファン': 0, 'SANC成功' : 0, 'SANC失敗' : 0
-                            };
-                        }
-
-                        if (result === '成功') {
-
-                            results[characterName]['成功']++;
-
-                            if (p.textContent.includes('【正気度ロール】')) results[characterName]['SANC成功']++;
-
-                        } else if (result === 'スペシャル') {
-
-                            results[characterName]['成功']++;
-
-                        } else if (result === '失敗') {
-
-                            results[characterName]['失敗']++;
-
-                            if (p.textContent.includes('【正気度ロール】')) results[characterName]['SANC失敗']++;
-
-                        } else if (result === '決定的成功' || result === '決定的成功/スペシャル') {
-
-                            results[characterName]['成功']++;
-                            results[characterName]['決定的成功']++;
-
-                            if (rollResult === 1) {
-                                results[characterName]['1クリ']++;
+                            if (!results[characterName]) {
+                                results[characterName] = {
+                                    '1クリ': 0, '決定的成功': 0, '成功': 0,
+                                    '失敗': 0, '致命的失敗': 0, '100ファン': 0, 'SANC成功': 0, 'SANC失敗': 0
+                                };
                             }
 
-                        } else if (result === '致命的失敗'){
+                            if (result === '成功' || result === 'スペシャル') {
 
-                            results[characterName]['失敗']++;
-                            results[characterName]['致命的失敗']++;
+                                results[characterName]['成功']++;
 
-                            if (rollResult === 100) {
-                                results[characterName]['100ファン']++;
+                                if (p.textContent.includes('【正気度ロール】')) results[characterName]['SANC成功']++;
+
+                            } else if (result === '失敗') {
+
+                                results[characterName]['失敗']++;
+
+                                if (p.textContent.includes('【正気度ロール】')) results[characterName]['SANC失敗']++;
+
+                            } else if (result.includes('決定的成功') || result === '決定的成功/スペシャル') {
+
+                                results[characterName]['成功']++;
+                                results[characterName]['決定的成功']++;
+
+                                if (rollResult === 1) {
+
+                                    results[characterName]['1クリ']++;
+
+                                }
+
+                            } else if (result === '致命的失敗') {
+
+                                results[characterName]['失敗']++;
+                                results[characterName]['致命的失敗']++;
+
+                                if (rollResult === 100) {
+
+                                    results[characterName]['100ファン']++;
+
+                                }
+
                             }
-                        }
-                    } 
+                        });
+                    }
                 });
 
                 // 結果の出力部分をテーブルで作成
@@ -89,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
 
 function openTab(evt, tabName) {
     // すべてのタブコンテンツを非表示にする
