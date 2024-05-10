@@ -94,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
 function openTab(evt, tabName) {
     // すべてのタブコンテンツを非表示にする
     var tabcontent = document.getElementsByClassName("tabcontent");
@@ -164,7 +163,7 @@ document.getElementById('npcForm').addEventListener('submit', function(e) {
         kind: "character",
         data: {
             name: name,
-            initiative: dex,
+            initiative: parseInt(dex),
             externalUrl: null,
             iconUrl: null,
             commands: command,
